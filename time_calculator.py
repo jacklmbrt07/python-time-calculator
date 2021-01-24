@@ -12,3 +12,13 @@ def add_time(start, duration):
 
 
     return start_dict
+
+# notes psuedo code
+# 1) convert start time into 24 hour time, edge cases 12:00 AM = 00:00. 
+# 2) convert start and duration into seconds
+# 3) add start and duration together
+# 4) convert final time into 24 hour time
+# 5) convert into 12 hour time and return, and number of days ahead
+#       5a) 1 day ahead: "(next day)"
+#       5b) >1 day ahead: "(x days later)"
+#  6) return day of the week later with conditional arg using modulos
