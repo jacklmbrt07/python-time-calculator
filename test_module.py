@@ -50,7 +50,7 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(actual, expected, 'Expected calling "add_time()" with "3:30 PM", "2:12", "Monday" to return "5:42 PM, Monday"')
 
     def test_twenty_four_with_day(self):
-        actual = add_time("2:59 AM", "24:00", "saturDay")
+        actual = add_time("2:59 AM", "24:00", "Saturday")
         expected = "2:59 AM, Sunday (next day)"
         self.assertEqual(actual, expected, 'Expected calling "add_time()" with "2:59 AM", "24:00", "saturDay" to return "2:59 AM, Sunday (next day)"')
 
