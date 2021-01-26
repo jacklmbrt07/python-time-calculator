@@ -9,8 +9,8 @@ def add_time(start, duration):
         "hours":  int(start_list[0][0]),
         "minutes": int(start_list[0][1]), 
         "meridiem": start_list[1], 
-        "duration_hours": duration_list[0],
-        "duration_minutes": duration_list[1],
+        "duration_hours": int(duration_list[0]),
+        "duration_minutes": int(duration_list[1]),
     }
     
 # 1) convert start time into 24 hour time, edge cases 12:00 AM = 00:00. 
@@ -27,10 +27,10 @@ def add_time(start, duration):
     final_time_minutes = start_minutes + duration_minutes
     
 # 4) convert final time into 24 hour time
-    final_time_str = str(final_time_minutes % 60 % 24) + ":" + str(final_time_minutes % 60)
+    final_time_str = str((final_time_minutes / 60) % 24) + ":" + str(final_time_minutes % 60)
 
 
-    return start_time
+    return final_time_minutes
 
 # notes psuedo code
 # 5) convert into 12 hour time and return, and number of days ahead
