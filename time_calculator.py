@@ -27,10 +27,33 @@ def add_time(start, duration):
     final_time_minutes = start_minutes + duration_minutes
     
 # 4) convert final time into 24 hour time
-    final_time_str = str((final_time_minutes / 60) % 24) + ":" + str(final_time_minutes % 60)
-
-
-    return final_time_minutes
+    final_time_str = {
+        "hours": (final_time_minutes / 60) % 24, 
+        "minutes": final_time_minutes % 60,
+        "meridiem": ""
+    }
+    
+    if final_time_str["hours"] == 0:
+        final_time_str["hours"] = 12
+        final_time_str["meridiem"] = 'AM'
+    elif final_time_str["hours"] > 0 and final_time_str["hours"] < 12:
+        final_time_str["meridiem"] = 'AM'
+    elif final_time_str["hours"] >= 12:
+        final_time_str["meridiem"] = 'PM'
+        
+    if final_time_str["hours"] < 10:
+        final_time_str["hours"] = "0{}".format(str(final_time_str["hours"]))
+    else:
+        final_time_str["hours"] = str(final_time_str["hours"])
+        
+    if final_time_str["minutes"] < 10:
+        final_time_str["minutes"] = "0{}".format(str(final_time_str["minutes"]))
+    else:
+        final_time_str["minutes"] = str(final_time_str["minutes"])
+        
+    answer = "{hr}:{min} {mer}".format(hr = final_time_str["hours"], min = final_time_str["minutes"], mer = final_time_str["meridiem"])
+            
+    return answer
 
 # notes psuedo code
 # 5) convert into 12 hour time and return, and number of days ahead
