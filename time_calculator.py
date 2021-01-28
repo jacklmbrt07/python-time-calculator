@@ -1,4 +1,4 @@
-def add_time(start, duration):
+def add_time(start, duration, show_day=None):
     start_list = start.split(" ")
     start_list[0] = start_list[0].split(":")
     
@@ -52,8 +52,14 @@ def add_time(start, duration):
         final_time_str["minutes"] = str(final_time_str["minutes"])
         
     answer = "{hr}:{min} {mer}".format(hr = final_time_str["hours"], min = final_time_str["minutes"], mer = final_time_str["meridiem"])
-            
-    return answer
+    
+    if show_day == None:
+        return answer
+    else:
+        days_of_the_week = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+        minutes_in_a_day = 1440
+        days_passed = final_time_minutes // minutes_in_a_day
+        # return answer + day_string
 
 # notes psuedo code
 # 5) convert into 12 hour time and return, and number of days ahead
