@@ -1,4 +1,4 @@
-def add_time(start, duration, show_day=None):
+def add_time(start, duration, starting_day=None):
     start_list = start.split(" ")
     start_list[0] = start_list[0].split(":")
     
@@ -51,12 +51,16 @@ def add_time(start, duration, show_day=None):
     else:
         final_time_str["minutes"] = str(final_time_str["minutes"])
         
+# 5) convert into 12 hour time and return, and number of days ahead
+#       5a) 1 day ahead: "(next day)"
+#       5b) >1 day ahead: "(x days later)"
+
     minutes_in_a_day = 1440
     days_passed = final_time_minutes // minutes_in_a_day
         
     answer = "{hr}:{min} {mer}".format(hr = final_time_str["hours"], min = final_time_str["minutes"], mer = final_time_str["meridiem"])
     
-    if show_day == None:
+    if starting_day == None:
         if days_passed == 0:
             return answer
         elif days_passed == 1:
@@ -64,15 +68,24 @@ def add_time(start, duration, show_day=None):
         else:
             return answer + " ({x} days later)".format(x = days_passed)
     else:
+#  6) return day of the week later with conditional arg using while loop
         days_of_the_week = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
-        day_index = days_of_the_week.index(show_day)
-        return day_index
-        # return answer + day_string
+        day_index = days_of_the_week.index(starting_day)
+        
+        i = day_index
+        t = days_passed
+        
+        while t > 0:
+            i = i + 1
+            t = t - 1
+            if i == 7:
+                i = 0
+            
+        if days_passed == 0:
+            return answer + ", {d}".format(d = days_of_the_week[i])
+        elif days_passed == 1:
+            return answer + ", {d} (next day)".format(d = days_of_the_week[i])
+        else:
+            return answer + ", {d} ({x} days later)".format(d = days_of_the_week[i], x = days_passed)
 
-# notes psuedo code
-# 5) convert into 12 hour time and return, and number of days ahead
-#       5a) 1 day ahead: "(next day)"
-#       5b) >1 day ahead: "(x days later)"
-#  6) return day of the week later with conditional arg using modulos
 
-#7 is this right?
