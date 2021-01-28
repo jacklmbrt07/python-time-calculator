@@ -60,3 +60,5 @@ def add_time(start, duration):
 #       5a) 1 day ahead: "(next day)"
 #       5b) >1 day ahead: "(x days later)"
 #  6) return day of the week later with conditional arg using modulos
+
+#7 is this right?
