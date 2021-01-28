@@ -51,14 +51,20 @@ def add_time(start, duration, show_day=None):
     else:
         final_time_str["minutes"] = str(final_time_str["minutes"])
         
+    minutes_in_a_day = 1440
+    days_passed = final_time_minutes // minutes_in_a_day
+        
     answer = "{hr}:{min} {mer}".format(hr = final_time_str["hours"], min = final_time_str["minutes"], mer = final_time_str["meridiem"])
     
     if show_day == None:
-        return answer
+        if days_passed == 0:
+            return answer
+        elif days_passed == 1:
+            return answer + " (next day)"
+        else:
+            return answer + " ({x} days later)".format(x = days_passed)
     else:
         days_of_the_week = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
-        minutes_in_a_day = 1440
-        days_passed = final_time_minutes // minutes_in_a_day
         # return answer + day_string
 
 # notes psuedo code
