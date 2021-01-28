@@ -65,6 +65,8 @@ def add_time(start, duration, show_day=None):
             return answer + " ({x} days later)".format(x = days_passed)
     else:
         days_of_the_week = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+        day_index = days_of_the_week.index(show_day)
+        return day_index
         # return answer + day_string
 
 # notes psuedo code

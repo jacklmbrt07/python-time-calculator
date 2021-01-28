@@ -3,7 +3,7 @@ from time_calculator import add_time
 from unittest import main
 
 
-print(add_time("11:06 PM", "40:02"))
+print(add_time("11:06 PM", "40:02", "Wednesday"))
 # answer: 1:08 AM
 
 
