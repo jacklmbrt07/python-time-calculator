@@ -33,19 +33,21 @@ def add_time(start, duration, starting_day=None):
         "meridiem": ""
     }
     
+    # converts meridiem and back into 12-hour
     if final_time_str["hours"] == 0:
         final_time_str["hours"] = 12
         final_time_str["meridiem"] = 'AM'
     elif final_time_str["hours"] > 0 and final_time_str["hours"] < 12:
         final_time_str["meridiem"] = 'AM'
-    elif final_time_str["hours"] >= 12:
+    elif final_time_str["hours"] == 12:
         final_time_str["meridiem"] = 'PM'
-        
-    if final_time_str["hours"] < 10:
-        final_time_str["hours"] = "0{}".format(str(final_time_str["hours"]))
     else:
-        final_time_str["hours"] = str(final_time_str["hours"])
-        
+        final_time_str["hours"] = final_time_str["hours"] - 12
+        final_time_str["meridiem"] = 'PM'
+    
+    # Turn time back into string 
+    final_time_str["hours"] = str(final_time_str["hours"])
+                                  
     if final_time_str["minutes"] < 10:
         final_time_str["minutes"] = "0{}".format(str(final_time_str["minutes"]))
     else:
